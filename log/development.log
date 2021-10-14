@@ -1,0 +1,97 @@
+Started GET "/" for 127.0.0.1 at 2021-10-14 20:39:46 +0300
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 1.3ms | Allocations: 330)
+  Rendered layout layouts/application.html.erb (Duration: 1824.2ms | Allocations: 42088)
+Completed 500 Internal Server Error in 1917ms (ActiveRecord: 0.0ms | Allocations: 48605)
+
+
+  
+ActionView::Template::Error ():
+     6:   <%= csrf_meta_tags %>
+     7:   <%= csp_meta_tag %>
+     8: 
+     9:   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    10:   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    11: </head>
+    12: 
+  
+(execjs):1
+app/views/layouts/application.html.erb:9
+Started GET "/" for 127.0.0.1 at 2021-10-14 20:40:00 +0300
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.6ms | Allocations: 218)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /home/andrei/Рабочий стол/myproject-finall/public/packs
+[Webpacker] Hash: d4295a8c06412d8457e2
+Version: webpack 4.46.0
+Time: 1661ms
+Built at: 14.10.2021 20:40:07
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-9630c58f0d6034b69757.js    125 KiB  application  [emitted] [immutable]  application
+js/application-9630c58f0d6034b69757.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-9630c58f0d6034b69757.js js/application-9630c58f0d6034b69757.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 563 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+  Rendered layouts/partial/_header.html.erb (Duration: 4.5ms | Allocations: 2506)
+  Rendered layout layouts/application.html.erb (Duration: 7171.4ms | Allocations: 77810)
+Completed 500 Internal Server Error in 7183ms (ActiveRecord: 0.0ms | Allocations: 83253)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+     6:       <li class="nav-item"><%= link_to 'Geometry', subject_tasks_path(2), class: 'nav-link link-dark px-2 active' %></li>
+     7:       <li class="nav-item"><%= link_to 'Linear', subject_tasks_path(3), class: 'nav-link link-dark px-2 active' %></li>
+     8:       <li class="nav-item"><%= link_to 'Users', page_users_path, class: 'nav-link link-dark px-2 active' %></li>
+     9:       <li class="nav-item"><%= link_to 'My page', page_users_path(current_user.id), class: 'nav-link link-dark px-2 active' %></li>
+    10:     </ul>
+    11: 
+    12:     <ul class="nav">
+  
+app/views/layouts/partial/_header.html.erb:9
+app/views/layouts/application.html.erb:16
+Started GET "/" for 127.0.0.1 at 2021-10-14 20:40:44 +0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 36)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/partial/_header.html.erb (Duration: 1.4ms | Allocations: 1728)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 10187)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms | Allocations: 13285)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+     6:       <li class="nav-item"><%= link_to 'Geometry', subject_tasks_path(2), class: 'nav-link link-dark px-2 active' %></li>
+     7:       <li class="nav-item"><%= link_to 'Linear', subject_tasks_path(3), class: 'nav-link link-dark px-2 active' %></li>
+     8:       <li class="nav-item"><%= link_to 'Users', page_users_path, class: 'nav-link link-dark px-2 active' %></li>
+     9:       <li class="nav-item"><%= link_to 'My page', page_users_path(current_user.id), class: 'nav-link link-dark px-2 active' %></li>
+    10:     </ul>
+    11: 
+    12:     <ul class="nav">
+  
+app/views/layouts/partial/_header.html.erb:9
+app/views/layouts/application.html.erb:16
+Started GET "/" for 127.0.0.1 at 2021-10-14 20:42:27 +0300
+Processing by PagesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/index.html.erb within layouts/application
+  Rendered pages/index.html.erb within layouts/application (Duration: 0.3ms | Allocations: 104)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/partial/_header.html.erb (Duration: 2.4ms | Allocations: 2307)
+  Rendered layouts/partial/_footer.html.erb (Duration: 0.4ms | Allocations: 123)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 11523)
+Completed 200 OK in 17ms (Views: 14.5ms | ActiveRecord: 0.0ms | Allocations: 15462)
+
+

@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 10
+  host: localhost
+  username: andreo
+  password: andreo
+
+development:
+  <<: *default
+  database: andreo_development
+
+test:
+  <<: *default
+  database: andreo_test
