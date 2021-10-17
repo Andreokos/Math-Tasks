@@ -1,54 +1,101 @@
-<h1 class="mb-4">Tasks</h1>
+<h1 class="mb-4">Tasks </h1>
+
 
 <% if user_signed_in? %>
-  <%= link_to 'New question', new_subject_task_path, class: 'btn btn-primary btn-lg' %>
+  <div class="mt-3">
+    <div class="mb-3 row">
+      <p>
+        <%= link_to 'New Question', new_subject_task_path(:subject_id), class: "btn btn-lg btn-primary" %>
+      </p>
+      <p>
+        <%= render 'subjects/partial/form_find' %>
+      </p>
+    </div>
+  </div>
+
 <% end %>
+
 
 <% @tasks_sub.each do |task| %>
   <article class="card mt-3">
+
+    <div>
+      <div class="card-body">
+        <%= User.find(task[:user_id])[:name] %>
+        <div>
+          Posted <%= time_ago_in_words(task.created_at) %> ago.
+        </div>
+
+        <hr>
+      </div>
+    </div>
+
     <div class="card-body">
 
       <div>
-        <% @task_tags.each do |tag| %>
+        <% task.tags.each do |tag| %>
           <%= link_to tag.name, '#', class: 'btn btn-outline-dark disabled' %>
         <% end %>
       </div>
 
-      <h4 class="mb-4"><%= task.name %></h4>
-
-      <section class="card-text">
-        <h5><%= task.titl %></h5>
-
-        <p class="my-2">
-          <%= task.condition %>
-        </p>
-      </section>
-
-      <% if user_signed_in? %>
-        <%= link_to 'Show', subject_task_path(:subject_id, task), class: "btn btn-lg btn-primary"%>
-        <%= link_to 'Edit', edit_subject_task_path(:subject_id, task), class: "btn btn-lg btn-warning"%>
-        <%= link_to 'Destroy', subject_task_path(:subject_id, task), data: {method: :delete, confirm: 'Are you sure?'},
-                    class: "btn btn-lg btn-danger"%>
-
-
-        <%= form_with model: @tag, url: subject_task_tags_path(params[:subject_id], task), scope: :tag do |f| %>
-        <div class = 'col-md-2'>
-          <div class="mt-3">
-          <%= f.text_field :name, placeholder: 'content', class: 'form-control', width: 40 %>
-          </div>
-
-          <div class="mt-1">
-          <%= f.submit "Add tag", class: 'btn btn-primary' %>
-          </div>
-
+      <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+          <h4>Title:</h4>
         </div>
 
-        <p class="my-2">
+        <div class="col-sm-3 col-form-label">
+          <h4 class="text-muted"><%= task.name %></h4>
+        </div>
+      </div>
 
+      <section class="card-text">
+        <div class="mb-3 row">
+          <div class="col-sm-2 col-form-label">
+            <h4>Subject:</h4>
+          </div>
+
+          <div class="col-sm-3 col-form-label">
+            <h4 class="text-muted"><%= task.titl %></h4>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <div class="col-sm-2 col-form-label">
+            <h4>Condition:</h4>
+          </div>
+
+          <div class="col-sm col-form-label">
+            <h4 class="text-muted"><%= task.condition %></h4>
+          </div>
+        </div>
+      </section>
+
+      <%= link_to 'More', subject_task_path(:subject_id, task), class: "btn btn-lg btn-primary"%>
+      <% if user_signed_in? %>
+        <% if current_user.id == task.user_id %>
+          <%= link_to 'Edit', edit_subject_task_path(:subject_id, task), class: "btn btn-lg btn-warning"%>
+          <%= link_to 'Destroy', subject_task_path(:subject_id, task), data: {method: :delete, confirm: 'Are you sure?'},
+                      class: "btn btn-lg btn-danger"%>
+
+
+          <%= form_with model: @tag, url: subject_task_tags_path(params[:subject_id], task), scope: :tag do |f| %>
+            <div class = 'col-md-2'>
+              <div class="mt-3">
+                <%= f.text_field :name, placeholder: 'tag...', class: 'form-control', width: 40 %>
+              </div>
+
+              <div class="mt-1">
+                <%= f.submit "Add tag", class: 'btn btn-primary' %>
+              </div>
+
+            </div>
+
+
+          <% end %>
         <% end %>
       <% end %>
-
     </div>
   </article>
 
 <% end %>
+

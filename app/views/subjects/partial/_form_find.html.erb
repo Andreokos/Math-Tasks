@@ -1,0 +1,10 @@
+<%= form_with model: @tag, url: subject_find_tasks_path(params[:subject_id]), scope: :tag do |f| %>
+
+  <p>
+  <%= f.text_field :name, placeholder: 'Put Tags', class: 'form-control' %>
+  </p>
+    <%= f.submit "Find Tasks", class: 'btn btn-primary' %>
+
+
+<% end %>
+

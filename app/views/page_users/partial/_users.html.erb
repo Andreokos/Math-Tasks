@@ -3,9 +3,10 @@
   <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
     <div class="col p-4 d-flex flex-column position-static">
       <strong class="d-inline-block mb-2 text-primary"><%= user.id %></strong>
-      <h3 class="mb-0"><%= user.email %></h3>
-      <div class="mb-1 text-muted"><%= user.created_at %></div>
+      <h3 class="mb-0"><%= user.name %></h3>
+      <div class="mb-1 text-muted"><%= user.email %></div>
       <p class="card-text mb-auto">ТУТ БУДЕТ РЕЙТИНГ</p>
+      <div class="mb-1 text-muted"><%= user.created_at %></div>
       <%= link_to 'More', page_user_path(user), class: 'stretched-link' %>
     </div>
     <div class="col-auto d-none d-lg-block">

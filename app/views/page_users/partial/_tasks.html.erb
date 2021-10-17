@@ -3,7 +3,7 @@
     <div class="card-body">
 
       <div>
-        <% @task_tags.each do |tag| %>
+        <% task.tags.each do |tag| %>
           <%= link_to tag.name, '#', class: 'btn btn-outline-dark disabled' %>
         <% end %>
       </div>
@@ -16,8 +16,10 @@
         </p>
       </section>
 
+      <%= link_to 'Show', page_user_task_path(params[:id], task), class: "btn btn-lg btn-primary"%>
+
       <% if user_signed_in? %>
-        <%= link_to 'Show', page_user_task_path(params[:id], task), class: "btn btn-lg btn-primary"%>
+        <% if current_user.id.to_s == params[:id]%>
         <%= link_to 'Edit', edit_page_user_task_path(params[:id], task), class: "btn btn-lg btn-warning"%>
         <%= link_to 'Destroy', page_user_task_path(params[:id], task), data: {method: :delete, confirm: 'Are you sure?'},
                     class: "btn btn-lg btn-danger"%>
@@ -36,7 +38,7 @@
           </div>
 
           <p class="my-2">
-
+          <% end %>
         <% end %>
       <% end %>
 
