@@ -1,14 +1,56 @@
-<article class="card mt-3">
+<p xmlns="http://www.w3.org/1999/html">
+  <%= link_to "Back", :back, class: 'btn btn-primary' %>
+</p>
+
+<article class="card">
+
+  <div>
+    <div class="card-body">
+      <%= User.find(@task.user_id)[:name] %>
+      <div>
+        Posted <%= time_ago_in_words(@task.created_at) %> ago.
+      </div>
+      <hr>
+
+    </div>
+  </div>
+
+
   <div class="card-body">
-    <h4 class="mb-4"><%= @task.name %></h4>
 
 
-    <section class="card-text">
-      <h5><%= @task.titl %></h5>
+    <div class="mb-3 row">
+      <div class="col-sm-2 col-form-label">
+        <h4>Title:</h4>
+      </div>
 
-      <p class="my-2">
-        <%= @task.condition %>
-      </p>
+      <div class="col-sm-3 col-form-label">
+        <h4 class="text-muted"><%= @task.name %></h4>
+      </div>
+    </div>
+
+
+    <p class="card-text">
+
+      <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+          <h4>Subject:</h4>
+        </div>
+
+        <div class="col-sm-3 col-form-label">
+          <h4 class="text-muted"><%= @task.titl %></h4>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col-sm-2 col-form-label">
+          <h4>Condition:</h4>
+        </div>
+
+        <div class="col-sm col-form-label">
+          <h4 class="text-muted"><%= @task.condition %></h4>
+        </div>
+      </div>
 
 
       <p class="my-2">
@@ -17,8 +59,53 @@
               <%= link_to f.name, '#', class: 'btn btn-outline-dark disabled' %>
               <% end %>
           </div>
+    </p>
+
+
+      <% if user_signed_in? %>
+        <% if current_user.id == @task.user_id %>
+          <p>
+            <%= link_to 'Edit', edit_subject_task_path(:subject_id, @task), class: "btn btn-lg btn-warning"%>
+            <%= link_to 'Destroy', subject_task_path(:subject_id, @task), data: {method: :delete, confirm: 'Are you sure?'},
+                        class: "btn btn-lg btn-danger"%>
+          </p>
+
+      <%= form_with model: @tag, url: subject_task_tags_path(@task.subject_id, @task), scope: :tag do |f| %>
+        <div class = 'col-md-2'>
+          <div class="mt-3">
+            <%= f.text_field :name, placeholder: 'tag...', class: 'form-control', width: 40 %>
+
+            <div class="mt-1">
+              <%= f.submit "Add tag", class: 'btn btn-primary' %>
+            </div>
+
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+
+        <div class="mb-3 row">
+          <div class="col-sm-2 col-form-label">
+            <h4>Images</h4>
+          </div>
+
+          <div class="col-sm col-form-label">
+            <% if @task.images.attached? %>
+              <% @task.images.each do |image| %>
+              <%= image_tag image, width: '200px ' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+
 
     </section>
-
   </div>
 </article>
+
+
+<% if user_signed_in? %>
+  <%= render 'tasks/partial/form_comment' %>
+<% end %>

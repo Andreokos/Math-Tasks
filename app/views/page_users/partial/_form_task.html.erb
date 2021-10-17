@@ -1,4 +1,4 @@
-<%= form_with model: @task, url:  subject_tasks_path(:subject_id, @task) do |f| %>
+<%= form_with model: @task, url:  page_user_tasks_path( current_user.id, @task), scope: :task do |f| %>
 
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">

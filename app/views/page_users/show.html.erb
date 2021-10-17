@@ -1,10 +1,16 @@
+<p><%= link_to "Back", :back, class: 'btn btn-primary' %></p>
+
 <div class="container">
   <div class="row">
 
 
     <div class="col-md-6">
       <%= render 'page_users/partial/user' %>
-      <%= render 'share/form_task' %>
+      <% if user_signed_in? %>
+        <% if current_user.id.to_s == params[:id]%>
+          <%= render 'page_users/partial/form_task' %>
+        <% end %>
+      <% end %>
     </div>
 
 

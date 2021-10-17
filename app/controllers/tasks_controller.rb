@@ -17,6 +17,12 @@ class TasksController < ApplicationController
   def show
     @task = Task.find params[:id]
     @tags = @task.tags
+    @comments = []
+    Comment.all.each do |comment|
+      if comment[:task_id].to_s == params[:id]
+        @comments << comment
+      end
+    end
   end
 
   def new
@@ -29,7 +35,7 @@ class TasksController < ApplicationController
     @task = @subject.tasks.new(task_params)
     @task.user_id = current_user.id
     if @task.save
-      redirect_to subject_task_path(params[:subject_id], @task), notice: 'Task was succesfully create'
+      redirect_to page_user_task_path( current_user.id, @task), notice: 'Task was succesfully create'
     else
       render :new
     end
@@ -52,13 +58,14 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find params[:id]
+    @idd = @task.subject_id
     @task.delete
-    redirect_to subject_tasks_path(:subject_id), notice: 'Task was succesfully delete'
+    redirect_to subject_tasks_path(@idd), notice: 'Task was succesfully delete'
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:name, :titl, :condition, :answer, tags_attributes: %i[id name destroy])
+    params.require(:task).permit(:name, :titl, :condition, :answer, images: [], tags_attributes: %i[id name destroy])
   end
 end
